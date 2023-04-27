@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 export default async function Home() {
   const res = await fetch("https://my.backend/book");
   const book = await res.json();

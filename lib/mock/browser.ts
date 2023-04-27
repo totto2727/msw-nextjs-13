@@ -1,4 +1,6 @@
+"use client";
+
 import { setupWorker } from "msw";
 import { handlers } from "./handler";
 
-export const worker = setupWorker(...handlers);
+export const createWorker = () => setupWorker(...handlers);

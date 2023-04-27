@@ -1,10 +1,12 @@
 import "./globals.css";
 
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  if (typeof window === "undefined") {
-    const { server } = await import("../lib/mock/server");
-    server.listen();
-    console.log("start mock in server");
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
+  if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+    if (typeof window === "undefined") {
+      const { server } = await import("../lib/mock/server");
+      server.listen();
+      console.log("start mock in server");
+    }
   }
 }
 

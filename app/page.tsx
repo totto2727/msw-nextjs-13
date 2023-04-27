@@ -3,12 +3,14 @@
 import { Book } from "@/lib/mock/type";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { worker } from "../lib/mock/browser";
+import { createWorker } from "../lib/mock/browser";
 
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  if (typeof window !== "undefined") {
-    worker.start();
-    console.log("start mock in browser");
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
+  if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+    if (typeof window !== "undefined") {
+      createWorker().start();
+      console.log("start mock in browser");
+    }
   }
 }
 
