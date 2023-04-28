@@ -1,7 +1,9 @@
 import { rest } from "msw";
 import { Book, Review } from "./type";
+import { getSwaggerPetstoreOpenAPI31MSW } from "@/openapi/petstore";
 
 export const handlers = [
+  ...getSwaggerPetstoreOpenAPI31MSW(),
   rest.get("https://my.backend/book", (_req, res, ctx) => {
     return res(
       ctx.json<Book>({

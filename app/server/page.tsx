@@ -1,15 +1,18 @@
+import { getUserByName } from "../../openapi/petstore";
+
 export const revalidate = 0;
 
 export default async function Home() {
-  const res = await fetch("https://my.backend/book");
-  const book = await res.json();
+  const res3 = await getUserByName("name");
+  const user = res3.data;
+  console.log(user);
 
-  if (!book) return <div>loading</div>;
   return (
     <div>
-      <img src={book.imageUrl} alt={book.title} width="250" />
-      <h1>{book.title}</h1>
-      <p>{book.description}</p>
+      <div>
+        <h1>{user.id}</h1>
+        <p>{user.email}</p>
+      </div>
     </div>
   );
 }

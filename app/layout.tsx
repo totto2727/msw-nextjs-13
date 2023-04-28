@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
   if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
     if (typeof window === "undefined") {
       const { server } = await import("../lib/mock/server");
-      server.listen();
+      server.listen({ onUnhandledRequest: "bypass" });
       console.log("start mock in server");
     }
   }

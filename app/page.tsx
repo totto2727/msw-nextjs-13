@@ -8,7 +8,7 @@ import { createWorker } from "../lib/mock/browser";
 if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
   if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
     if (typeof window !== "undefined") {
-      createWorker().start();
+      createWorker().start({ onUnhandledRequest: "bypass" });
       console.log("start mock in browser");
     }
   }
