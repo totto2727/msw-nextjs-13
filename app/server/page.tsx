@@ -1,18 +1,11 @@
-import { getUserByName } from "../../openapi/petstore";
-
-export const revalidate = 0;
+import { UserService } from "@/openapi/requests";
 
 export default async function Home() {
-  const res3 = await getUserByName("name");
-  const user = res3.data;
-  console.log(user);
+  const user = await UserService.getUserByName("name");
 
   return (
     <div>
-      <div>
-        <h1>{user.id}</h1>
-        <p>{user.email}</p>
-      </div>
+      <div>{JSON.stringify(user)}</div>
     </div>
   );
 }

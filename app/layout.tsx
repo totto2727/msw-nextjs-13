@@ -1,14 +1,5 @@
 import "./globals.css";
-
-if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
-  if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-    if (typeof window === "undefined") {
-      const { server } = await import("../lib/mock/server");
-      server.listen({ onUnhandledRequest: "bypass" });
-      console.log("start mock in server");
-    }
-  }
-}
+import RootProvider from "./provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -22,7 +13,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <RootProvider>{children}</RootProvider>
+      </body>
     </html>
   );
 }
